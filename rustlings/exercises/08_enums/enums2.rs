@@ -1,3 +1,5 @@
+// 定义枚举值（每个枚举值的类型都不一样）
+
 #[derive(Debug)]
 struct Point {
     x: u64,
@@ -7,6 +9,11 @@ struct Point {
 #[derive(Debug)]
 enum Message {
     // TODO: Define the different variants used below.
+    Resize { width: u64, height: u64 },
+    Move(Point),
+    Echo(String),
+    ChangeColor(i32, i32, i32),
+    Quit,
 }
 
 impl Message {

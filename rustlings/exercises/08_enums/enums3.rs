@@ -1,3 +1,5 @@
+// 使用match(匹配模式)对message实例进行赋值
+
 struct Point {
     x: u64,
     y: u64,
@@ -46,6 +48,13 @@ impl State {
     fn process(&mut self, message: Message) {
         // TODO: Create a match expression to process the different message
         // variants using the methods defined above.
+        match message {
+            Message::Resize { width, height } => self.resize(width, height),
+            Message::Move(point) => self.move_position(point),
+            Message::Echo(string) => self.echo(string),
+            Message::ChangeColor(r, g, b) => self.change_color(r, g, b),
+            Message::Quit => self.quit(),
+        }
     }
 }
 

@@ -1,3 +1,5 @@
+// 调整模块中函数的可见性
+
 // TODO: Fix the compiler error about calling a private function.
 mod sausage_factory {
     // Don't let anybody outside of this module see this!
@@ -5,7 +7,7 @@ mod sausage_factory {
         String::from("Ginger")
     }
 
-    fn make_sausage() {
+    pub fn make_sausage() {
         get_secret_recipe();
         println!("sausage!");
     }

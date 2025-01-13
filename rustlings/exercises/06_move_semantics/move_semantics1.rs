@@ -1,6 +1,12 @@
+// 将vec0所有权转给fill_vec方法，在fill_vec处理完成后，再返回
+
 // TODO: Fix the compiler error in this function.
+// 方式1：更改参数，增加可变
+// fn fill_vec(mut vec: Vec<i32>) -> Vec<i32> {
 fn fill_vec(vec: Vec<i32>) -> Vec<i32> {
-    let vec = vec;
+    // 方式2：获取vec所有权
+    // let vec = vec;
+    let mut vec = vec;
 
     vec.push(88);
 

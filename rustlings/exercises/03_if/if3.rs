@@ -1,13 +1,19 @@
+// if 每个分支返回的行必须一样
+
 fn animal_habitat(animal: &str) -> &str {
     // TODO: Fix the compiler error in the statement below.
     let identifier = if animal == "crab" {
         1
     } else if animal == "gopher" {
-        2.0
+        // 这是识别成float
+        // 2.0
+        2
     } else if animal == "snake" {
         3
     } else {
-        "Unknown"
+        // 字符串类型
+        // "Unknown"
+        4
     };
 
     // Don't change the expression below!
