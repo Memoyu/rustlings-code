@@ -1,3 +1,5 @@
+// 实现生成斐波那契数列
+
 fn factorial(num: u64) -> u64 {
     // TODO: Complete this function to return the factorial of `num` which is
     // defined as `1 * 2 * 3 * … * num`.
@@ -10,6 +12,16 @@ fn factorial(num: u64) -> u64 {
     // - additional variables
     // For an extra challenge, don't use:
     // - recursion
+
+    // for循环实现
+    // let mut result = 1;
+    // for x in 2..=num {
+    //     result *= x;
+    // }
+    // result
+
+    // 使用高阶函数fold
+    (2..=num).fold(1, |acc, x| acc * x)
 }
 
 fn main() {

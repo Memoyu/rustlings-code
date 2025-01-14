@@ -1,3 +1,5 @@
+// 实现多个特征约束，函数的签名可使用 `impl Trait1 + Trait2` 的形式做参数限制
+
 trait SomeTrait {
     fn some_function(&self) -> bool {
         true
@@ -19,7 +21,7 @@ impl SomeTrait for OtherStruct {}
 impl OtherTrait for OtherStruct {}
 
 // TODO: Fix the compiler error by only changing the signature of this function.
-fn some_func(item: ???) -> bool {
+fn some_func(item: impl SomeTrait + OtherTrait) -> bool {
     item.some_function() && item.other_function()
 }
 

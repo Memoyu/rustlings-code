@@ -43,7 +43,17 @@ impl PositiveNonzeroInteger {
     fn parse(s: &str) -> Result<Self, ParsePosNonzeroError> {
         // TODO: change this to return an appropriate error instead of panicking
         // when `parse()` returns an error.
-        let x: i64 = s.parse().unwrap();
+        // let x: i64 = s.parse().unwrap();
+
+        // 方式1：使用match表达式
+        // let x = match s.parse::<i64>() {
+        //     Ok(x) => x,
+        //     Err(e) => return Err(ParsePosNonzeroError::ParseInt(e)),
+        // };
+
+        // 方式2: 使用map_err，其实源码方式1等价
+        let x = s.parse().map_err(ParsePosNonzeroError::ParseInt)?;
+
         Self::new(x).map_err(ParsePosNonzeroError::from_creation)
     }
 }

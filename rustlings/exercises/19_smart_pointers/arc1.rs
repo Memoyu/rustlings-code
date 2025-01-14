@@ -1,3 +1,5 @@
+// 线程安全的引用计数智能指针Arc使用
+
 // In this exercise, we are given a `Vec` of `u32` called `numbers` with values
 // ranging from 0 to 99. We would like to use this set of numbers within 8
 // different threads simultaneously. Each thread is going to get the sum of
@@ -24,12 +26,14 @@ fn main() {
 
     // TODO: Define `shared_numbers` by using `Arc`.
     // let shared_numbers = ???;
+    let shared_numbers: Arc<Vec<u32>> = Arc::new(numbers.clone());
 
     let mut join_handles = Vec::new();
 
     for offset in 0..8 {
         // TODO: Define `child_numbers` using `shared_numbers`.
         // let child_numbers = ???;
+        let child_numbers = Arc::clone(&shared_numbers);
 
         let handle = thread::spawn(move || {
             let sum: u32 = child_numbers.iter().filter(|&&n| n % 8 == offset).sum();

@@ -1,3 +1,5 @@
+// 对Result处理
+
 // Say we're writing a game where you can buy items with tokens. All items cost
 // 5 tokens, and whenever you purchase items there is a processing fee of 1
 // token. A player of the game will type in how many items they want to buy, and
@@ -21,7 +23,22 @@ fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let cost_per_item = 5;
 
     // TODO: Handle the error case as described above.
-    let qty = item_quantity.parse::<i32>();
+    // let qty = item_quantity.parse::<i32>();
+
+    // Ok(qty * cost_per_item + processing_fee)
+
+    // 方式1
+    // let qty = item_quantity.parse::<i32>();
+    // match qty {
+    //     Ok(q) => Ok(q * cost_per_item + processing_fee),
+    //     Err(e) => Err(e),
+    // }
+
+    // 方式2
+    let qty = match item_quantity.parse::<i32>() {
+        Ok(q) => q,
+        Err(e) => return Err(e),
+    };
 
     Ok(qty * cost_per_item + processing_fee)
 }

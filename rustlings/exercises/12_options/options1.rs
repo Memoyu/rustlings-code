@@ -1,9 +1,26 @@
+// 对于option的使用，Some()和None的使用
+
 // This function returns how much icecream there is left in the fridge.
 // If it's before 22:00 (24-hour system), then 5 scoops are left. At 22:00,
 // someone eats it all, so no icecream is left (value 0). Return `None` if
 // `hour_of_day` is higher than 23.
 fn maybe_icecream(hour_of_day: u16) -> Option<u16> {
     // TODO: Complete the function body.
+    // 使用if else处理
+    // if hour_of_day < 22 {
+    //     Some(5)
+    // } else if hour_of_day < 24 {
+    //     Some(0)
+    // } else {
+    //     None
+    // }
+
+    // 使用match匹配模式处理
+    match hour_of_day {
+        0..22 => Some(5),
+        22..=23 => Some(0),
+        _ => None,
+    }
 }
 
 fn main() {
@@ -18,7 +35,7 @@ mod tests {
     fn raw_value() {
         // TODO: Fix this test. How do you get the value contained in the
         // Option?
-        let icecreams = maybe_icecream(12);
+        let icecreams = maybe_icecream(12).unwrap();
 
         assert_eq!(icecreams, 5); // Don't change this line.
     }

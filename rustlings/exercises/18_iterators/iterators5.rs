@@ -1,3 +1,6 @@
+// 对于hashmap的values()方法，返回的是一个迭代器使用
+// 然后使用迭代器方法处理数据
+
 // Let's define a simple model to track Rustlings' exercise progress. Progress
 // will be modelled using a hash map. The name of the exercise is the key and
 // the progress is the value. Two counting functions were created to count the
@@ -28,6 +31,7 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
     // `map` is a hash map with `String` keys and `Progress` values.
     // map = { "variables1": Complete, "from_str": None, … }
+    map.values().filter(|m| **m == value).count()
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -48,6 +52,12 @@ fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Pr
     // `collection` is a slice of hash maps.
     // collection = [{ "variables1": Complete, "from_str": None, … },
     //               { "variables2": Complete, … }, … ]
+    collection
+        .iter()
+        .flat_map(|c| c.values()) // 使用flat_map将多个HashMap的values合并成一个迭代器
+        // .flat_map(HashMap::values) // 与上段代码等价
+        .filter(|c| **c == value)
+        .count()
 }
 
 fn main() {
