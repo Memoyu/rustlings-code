@@ -1,3 +1,7 @@
+// 题意：根据传入命令(枚举), 对字符串进行处理
+// 从单元测试中可以看出，需要传入vec命令，最后返回vec处理后的String
+// 主要在于iter.map、match的使用
+
 // This is a quiz for the following sections:
 // - Strings
 // - Vecs
@@ -28,6 +32,17 @@ mod my_module {
 
     // TODO: Complete the function as described above.
     // pub fn transformer(input: ???) -> ??? { ??? }
+
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
+        input
+            .into_iter()
+            .map(|(s, c)| match c {
+                Command::Uppercase => s.to_uppercase(),
+                Command::Trim => s.trim().to_string(),
+                Command::Append(n) => s + &"bar".repeat(n),
+            })
+            .collect()
+    }
 }
 
 fn main() {
@@ -38,6 +53,7 @@ fn main() {
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
     // use ???;
+    use super::my_module::transformer;
     use super::Command;
 
     #[test]
